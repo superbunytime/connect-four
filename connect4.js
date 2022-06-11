@@ -19,7 +19,6 @@ function makeBoard() {
   for (let i = 0; i < HEIGHT; i++) {
     board.push(Array.from({ length: WIDTH }));
   }
-  //console.log(board);
 }
 
 /* makeHtmlBoard: make HTML table and row of column tops. */
@@ -67,7 +66,6 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
   const divInsertion = document.createElement('div');
   divInsertion.classList.add('piece')
   divInsertion.classList.add(`p${currPlayer}`)
@@ -77,15 +75,14 @@ function placeInTable(y, x) {
   //first step is get the div inserted into the correct row
   //then get the div to insert into the correct row and column, by referencing y
 
+  //oh no, everything works and i still don't remember what this line of code is here for
+  //help
 
-  //const selectedCell = document.getElementById(td)
-  //i don't remember if i wrote this line of code or if it came with the document and at this point i'm afraid to ask
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
   alert(msg);
 }
 
@@ -108,17 +105,21 @@ function handleClick(evt) {
 
   // check for win
   if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
+
+    setTimeout(() => {
+      return endGame(`Player ${currPlayer} won!`)
+    }, 100);
+    //Using a timeout so that the piece displays prior to the win displaying because it aggravates my OCD otherwise.
   }
 
   //check for tie
   if (board.every(row => row.every(cell => cell))){
-    return endGame('Draw!')
+    setTimeout(() => {
+      return endGame('Draw!')
+    }, 100);
   }
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
-
   currPlayer == 1 ? currPlayer++ : currPlayer--
 }
 
